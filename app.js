@@ -9,6 +9,12 @@ const app = express();
 
 //General middleware
 app.use(bodyParser.json()); //Parses application/json body content
+/**Enable CORS */
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*"); //Allow all origins to access this server
+  res.setHeader("Access-Control-Allow-Methods", "GET PUT PATCH POST DELETE"); //GET PUT PATCH POST DELETE request is allowed
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Accepts Content-Type and Authorization headers
+});
 
 app.use((req, res, next) => {
   const error = new Error("Not Implemented");
